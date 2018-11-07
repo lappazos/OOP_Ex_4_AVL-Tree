@@ -1,0 +1,64 @@
+tal.gliksman
+lioraryepaz
+
+
+
+
+=============================
+=      File description     =
+=============================
+BinaryTree.java- a binary search tree class.
+BinaryNode.java- a class that represents a node in a binary search tree.
+AvlTree.java - a class that extends binaryTree to an avl tree.
+README - this file.
+
+=============================
+=          Design           =
+=============================
+we implemented BinaryTree class and AvlTree extends this class. we implemented all the methods in
+BinaryTree class, because we wanted binary tree to be a functional and not an abstract class and because
+avl tree is a binary search tree and should only extend some of the functions.
+we decided that a binary tree will not update the node's height because it is saving running time.
+we decided to implement the data structure using Node class - each node has potential father and 2 sons.
+Node is package private because it is used only to implement BinaryTrees.
+
+=============================
+=  Implementation details   =
+=============================
+Binary Tree has every method that is needed for a binary tree- including building a tree, adding to the
+tree, delete from the tree.. AvlTree class extends this class and overrides the methods delete and add
+to maintain the avl property (and use super to use their action).
+the class Node represents a node and contains many getters and setters to the node's properties.
+we implemented the father setter pretty nice in our opinion because it updates also the father node with
+its new son, and prevents many bags (of update only one of the nodes but not the other).
+add- we implemented add method in binaryTree class. it uses 1 helper function- addHelper (and addHelper
+uses addCur). those functions adding the new node in a recursive way. in AvlTree class we called the
+add function in BinaryTree with super and used an helper function- addingAdjustHeight method that uses
+itself a few helper functions to correct the tree and update it.
+delete- we implemented delete in BinaryTree class. the delete function uses a few helper functions:
+deleteLeaf- that deletes a leaf from the tree, deleteWithOneSon- that deletes a node with exectly 1 child
+and successor- that finds the successor of a node with 2 children.
+in AvlTree class the delete function overrides the delete function in BinaryTree class. it calls it with
+super and than calls the deleteAdjustHeight function to update the tree and correct it with rotations if
+needed. the deleteAdjustHeight function uses a few helper functions to check if a correction is needed,
+to make the correction and to fix the heights. we used most of those helper functions in add also.
+
+=============================
+=    Answers to questions   =
+=============================
+5.1.the series is: (7,5,10,3,6,8,12,2,9,11,15,16).
+5.2.1. the asymptotic running time complexity of this tree construction using our function is O(nlogn).
+that is because the adding function we built takes logn running time complexity and we do it for each
+element in the array- in total n times- so  Θ(nlogn).
+5.2.2.if we could have build the function different for a sorted array the best running time would have
+been  Θ(n). in this case we would have been build it in a way that recursivly chooses the mid element to
+be the root and the 2 mid elements of each sub-array (from left & right) to become his sons.
+5.3.1. in our implementation, due to the fact we werent required to perform best running time, we chose
+to do a simple ForEach iteration, with adding each element one by one - this gives us the same as 5.2.1
+ - O(nlog(n)).
+ 5.3.2 because the iterator of the given tree will give us a sorted array of its elements
+ (will take O(n)), we could actually perform the same as described in 5.2.2, and do it in  Θ(n).
+5.4.1.the asymptotic running time complexity for our implementation for findMinNodes is  Θ(h). that
+is because we used a for loop that runs  Θ(h) times and does O(1) actions every iteration.
+5.4.2.our implementation does not give the best running time complexity. the best time complexity is
+ Θ(1) - using a formula to find the K fibonacci number we are looking for.
